@@ -1,0 +1,157 @@
+<html lang="es">
+	<html lang="es">
+
+	<head>
+		<title>lagosur</title>
+		
+		<meta charset="utf-8">
+		
+		<script>
+		function entraRaton (){
+		var imagen = document.getElementById ("rollover");
+		imagen.src = "k.png";
+		}
+		function saleRaton (){
+		var imagen = document.getElementById ("rollover");
+		imagen.src = "22.png";
+		
+		}
+		
+			/* El array de artículos lo definimos como variable global. De esta manera, tendremos acceso a él desde cualquier ubicacion, incluyendo las funciones. */
+			var arrayComentarios = new Array();
+		
+			/* Esta función nos permite leer el contenido del localStorage. Si no existe el registro 'comentarioss' la función devuelve NULL y, en caso contrario, devuelve la cadena de caracteres almacenada. Utiliza el método localStorage.getItem ya conocido */
+			function leerLocalStorage() {
+				if ( localStorage.getItem('comentarios') == undefined ) {
+					return null;
+				} else {
+					return localStorage.getItem('comentarios');
+				}
+			}
+			
+			/* Esta función recorre con un bucle el array de artículos y los pinta de una manera más o menos atractiva */
+			function pintarArray() {
+			
+				/* Obtengo una referencia a la caja que contiene la lista de artículos */
+				var lista = document.getElementById("lista");
+				
+				/* Con un bucle leo todo el contenido del array de artículos y lo voy concatenando como contenido de la lista. Utilizao el método innerHTML al que le tengo que proporcionar todo el contenido que quiero copiar. Por ello, inicializo una cadena vacía y voy añadiéndole artículo por artículo. */
+				var contenido = "";
+				for (var i=0; i< arrayComentarios.length; i++) {
+					var comentarios= arrayComentarios[i]['comentarios'];
+					var nickname = arrayComentarios[i]['nickname'];
+					contenido += "[" + comentarios+ "] - " + nickname + ".";
+					contenido += "<br>";
+				}
+				
+				/* Finalmente, copio la lista que acabo de confeccionar en el div lista */
+				lista.innerHTML = contenido;
+			
+			}
+			
+			/* Esta es una función que agrega un nuevo artículo al array de localStore según los valores que haya en los cuadros de texto (se debería añadir algún tipo de validación). Lee los valores de los cuadros de texto y confecciona un nuevo artículo (un objeto JSON). A continuación, añade el nuevo artículo al array global de artículos y reescribe el localStorage transformando primero el array nuevamente a cadena. */
+			function agregarcomentarios() {
+				
+				/* Añadimos los datos introducidos en los cuadros de texto al array. Primero creamos el objeto correspondiente al artículo. */
+				var textocomentarios= document.getElementById("comentarios").value;
+				var textonickname = document.getElementById("nickname").value;
+				var nuevocomentarios= {comentarios:textocomentarios, nickname:textonickname};
+				arrayComentarios.push(nuevocomentarios);
+				
+				/* Y reescribimos el localStorage */
+				var cadena = JSON.stringify(arrayComentarios);
+				localStorage.setItem('comentarios', cadena);
+				
+				/* Y repintamos el contenido de la lista */
+				pintarArray();
+				
+				/* Como detalle final, borramos el contenido de los cuadros de texto artículo y nickname para facilitar el trabajo. */
+				document.getElementById("comentarios").value="";
+				document.getElementById("nickname").value="";
+				
+			}
+			
+			/* Esta función simplemente borra el localStorage o, mejor dicho, la entrada comentarioss del localStorage */
+			function borrarLocalStorage() {
+			
+				/* Antes del borrado tengo que comprobar que exista realmente el localStorage correspondiente a "artículos". Comprobamos su existencia verificando que es distinto de undefined */
+				if ( localStorage.getItem('comentarios') != undefined ) {
+					localStorage.removeItem('comentarios');
+					
+					/* Hacemos que reinicie el array de Artículos */
+					arrayComentarios = new Array();
+					
+					/* Y pintamos nuevamente el mensaje no hay artículos */
+					document.getElementById("lista").innerText = "No hay comentarios";
+				}
+				
+			}
+			
+		</script>
+		
+		<link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
+		 <style type="text/css"></style>
+		
+		<link rel="stylesheet" type="text/css" href="v.css" />
+		
+	</head>
+	
+	<body>
+	<nav class="horizontal">
+
+			<ul>
+			    <li><a href="#"><a href="index.html"/>Menú.</a></li>
+				<li><a href="#"><a href="curiosidades.html"/>¿Sabías que...?.</a></li>
+				<li><a href="#"><a href="imagenes.html"/>Imágenes.</a></li>
+				<li><a href="#"><a href="enlaces.html"/>Enlaces.</a></li>
+				<li><a href="#"><a href="comentarios.html"/>Comentarios.</a></li>
+				
+		
+			</ul>		
+		</nav>
+		
+	
+		<h1>>Déjanos un comentario</h1>
+	
+	
+		<input type="text" placeholder="escribe un comentario" id="comentarios" />
+		<input type="text" placeholder="Introduce tu nickname" id="nickname" />
+		<button onclick="agregarcomentarios();">Enviar comentario</button>
+
+		<div id="lista"></div>
+
+		<button onclick="borrarLocalStorage();">Borrar comentario</button>
+		
+		<script>
+		
+			/* Leo el contenido del localStorage. La función me devuelve una cadena con los artículos almacenados o null si no existiera ningún artículo */
+			var respuesta = leerLocalStorage();
+			
+			if ( respuesta == null ) {
+				
+				/* El localStorage está vacío. Muestro un mensaje estándar */
+				document.getElementById("lista").innerText = "No hay comentarios";
+				
+			} else {
+			
+				/* Reconvertimos el texto de localStorage en array */
+				arrayComentarios = JSON.parse(respuesta);
+				
+				/* Y lo pintamos */
+				pintarArray();
+			
+			}
+		
+		</script>
+		<div><img id="rollover" src="22.png" alt="pajarraco" class="figure" onmouseover = "entraRaton ()"
+		onmouseout = "saleRaton ()"></div>
+		
+		<div id="connect">
+			<p>Síguenos en<a href="https://m.facebook.com/login/?next=https%3A%2F%2Fm.facebook.com%2Fgroups%2F362221513803000%3Fid%3D362221513803000%26ref%3Dcontent_filter%26refsrc%3Dhttps%253A%252F%252Fm.facebook.com%252Fprofile.php%253Fref%253Dcontent_filter&refsrc=https%3A%2F%2Fm.facebook.com%2Fprofile.php%3Fref%3Dcontent_filter&ref=content_filter&_rdr" id="facebook" target="_blank"> Facebook </a></p>
+			<img id="img22" src="56.png" alt="facebook" class="figure">
+		</div>
+	
+		<h6> &copy; copyright 1989-1994</h6>	
+	</body>
+	
+</html>

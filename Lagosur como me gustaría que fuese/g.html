@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xml:lang="es" lang="es">
+
+	<head>
+		<title>xxxxxxxxxxxxx</title>
+		<meta http-equiv="content-type" 
+			  content="text/html; charset=utf-8"/>
+			  
+			  <script>
+			
+			function crearparrafo() {
+		
+				var cuadrotexto = document.getelementbyid("texto");
+				
+				var contenido = cuadrotexto.value;
+				
+				var parrafo = document.createelement("p");
+		
+				parrafo.appendchild(nodotexto);
+				
+				var min = 0;
+				var max = 1;
+				var aleatorio = math.floor(math.random()*(max-min+1)) + min;
+
+				if ( aleatorio == 0 ) {
+			
+					var atributo = document.createattribute("class");
+					atributo.value = "borrable";
+					
+					parrafo.setattributenode(atributo);
+					
+				}
+
+				
+				
+				document.body.appendchild(parrafo);
+				
+				
+			}
+
+			function borrarborrables() {
+			
+			
+				var borrables = document.getelementsbyclassname("borrable");
+				
+
+				for (var i = borrables.length - 1; i >= 0 ; i--) {
+				
+	
+					var nodoaborrar = borrables[i];
+					var padre = nodoaborrar.parentnode;
+					padre.removechild(nodoaborrar);
+					
+				}
+			
+			}
+			
+		</script>
+			  
+			  
+			  
+			  
+			  
+			  
+			  
+			  
+	<style><link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
+			  
+			  </style>
+
+			  <style type="text/css"></style>
+		
+		<link rel="stylesheet" type="text/css" href="v.css" />
+		
+		
+		
+	</head>
+	<body>
+	
+	<nav class="horizontal">
+
+			<ul>
+				<li><a href="#"><a href="index.html"/>Menú</a></li>
+				<li><a href="#"><a href="a.html"/>¿Sabías que...?</a></li>
+				<li><a href="#"><a href="b.html"/>Imágenes</a></li>
+				<li><a href="#"><a href="c.html"/>Enlaces</a></li>
+				<li><a href="#"><a href="f.html"/>Sobre la web</a></li>
+				
+		
+			</ul>		
+		</nav>
+<h1> >Comentarios </h1>
+		<div>
+		
+			<input type="text" id="texto" />
+			<button onclick="crearParrafo();">Añadir comentario</button>
+			<button onclick="borrarBorrables();">Borrar comentario</button>
+		
+		</div>
+
+		
+		<div id="contenedor"></div>
+		<h6> &copy; copyright 1989-1994</h6>
+	</body>
+</html>

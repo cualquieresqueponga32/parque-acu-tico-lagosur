@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xml:lang="es" lang="es">
+
+	<head>
+		<title>xxxxxxxxxxxxx</title>
+		<meta http-equiv="Content-Type" 
+			  content="text/html; charset=utf-8"/>
+			
+			  		<link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
+		 <style type="text/css"></style>
+		
+			  		
+		<link rel="stylesheet" type="text/css" href="v.css" />
+		<script>
+			
+			function crearParrafo() {
+			
+				/* Leer el contenido del cuadro de texto para poder generar el nodo párrafo correspondiente */
+				
+				/* Obtengo una referencia de mi cuadro de texto */
+				var cuadroTexto = document.getElementById("texto");
+				
+				/* ¿Cuál es el texto contenido en dicho cuadro de texto */
+				var contenido = cuadroTexto.value;
+				
+				/* Los cuatro pasos 1-Creo el nodo Element de tipo párrafo */
+				var parrafo = document.createElement("p");
+				
+				/* 2 - Creo el nodo de texto con el contenido del cuadro de texto */
+				var nodoTexto = document.createTextNode(contenido);
+				
+				/* 3 - Inserto el nodo de texto en el nodo Element */
+				parrafo.appendChild(nodoTexto);
+				
+				
+				/* Ahora, tengo que decidir aleatoriamente si el párrafo va a marcarse con la clase borrable o no. */
+				var min = 0;
+				var max = 1;
+				var aleatorio = Math.floor(Math.random()*(max-min+1)) + min;
+
+				if ( aleatorio == 0 ) {
+				
+					/* Le creo un atributo class a mi párrafo con la clase borrable */
+					var atributo = document.createAttribute("class");
+					atributo.value = "borrable";
+					
+					/* Añado el atributo a mi párrafo */
+					parrafo.setAttributeNode(atributo);
+					
+				}
+
+				
+				/* 4 - Inserto el párrafo como hijo de body */
+				document.body.appendChild(parrafo);
+				
+				/* O podríamos añadir el párrafo a cualquier otro elemento de la página como, por ejemplo, un contenedor al que le he dado un valor de id "contenedor" */ 
+				
+				// var miDiv = document.getElementById("contenedor");
+				// miDiv.appendChild(parrafo);
+				
+			}
+
+			function borrarBorrables() {
+			
+				/* Primero, obtener el array de párrafos borrables con el método getElementsByClassName */
+				var borrables = document.getElementsByClassName("borrable");
+				
+				/* Recorro el array con un bucle y voy borrando cada uno de ellos */
+				for (var i = borrables.length - 1; i >= 0 ; i--) {
+				
+					// Borro cada elemento.
+					var nodoABorrar = borrables[i];
+					var padre = nodoABorrar.parentNode;
+					padre.removeChild(nodoABorrar);
+					
+				}
+			
+			}
+			
+		</script>	  
+			  
+</head>
+	<body>
+	<nav class="horizontal">
+
+			<ul>
+			    <li><a href="#"><a href="index.html"/>Menú.</a></li>
+				<li><a href="#"><a href="a.html"/>¿Sabías que...?.</a></li>
+				<li><a href="#"><a href="b.html"/>Imágenes.</a></li>
+				<li><a href="#"><a href="c.html"/>Enlaces.</a></li>
+				<li><a href="#"><a href="d.html"/>Comentarios.</a></li>
+				
+		
+			</ul>		
+		</nav>
+		
+	
+<h1> >Comentarios </h1>
+<div>
+		
+			<input type="text" id="texto" />
+			<button onclick="crearParrafo();">Añadir comentario</button>
+			<button onclick="borrarBorrables();">Borrar comentario</button>
+		
+		</div>
+
+		
+		<div id="contenedor"></div>
+		
+		<div class="comments-container">
+
+		<div id="comments-list" class="comments-list">
+			
+				<div class="comment-main-level">
+			
+					<div class="comment-avatar"><img src="54.jpg" alt=""></div>
+		
+					<div class="comment-box">
+						<div class="comment-head">
+							<h6 class="comment-name by-author">Adrián Cañadas</h6>
+							<span>hace 50 minutos</span>
+							<i class="fa fa-reply"></i>
+							<i class="fa fa-heart"></i>
+						</div>
+						<div class="comment-content">
+							<p>Qué recuerdos!Fue allí donde conocí a mi actual mujer.</p>
+						</div>
+					</div>
+				</div>
+				
+				<ul class="comments-list reply-list">
+					<li>
+						
+						<div class="comment-avatar"><img src="53.jpg" alt=""></div>
+						<div class="comment-box">
+							<div class="comment-head">
+								<h6 class="comment-name">Carmen Atwell</h6>
+								<span>hace 30 minutos</span>
+								<i class="fa fa-reply"></i>
+								<i class="fa fa-heart"></i>
+							</div>
+							<div class="comment-content">
+								<p>Ah sí que lo recuerdo! Esas focas tobogán en la piscina familiar...Ojalá pudiera volver a verlas!</p>
+							</div>
+						</div>
+					</li>
+
+					
+				</ul>
+			</li>
+
+			<li>
+				<div class="comment-main-level">
+					<div class="comment-avatar"><img src="52.png" alt=""></div>
+					<div class="comment-box">
+						<div class="comment-head">
+							<h6 class="comment-name"><a href="52.png">Ramón Saotome</a></h6>
+							<span>hace 20 minutos</span>
+							<i class="fa fa-reply"></i>
+							<i class="fa fa-heart"></i>
+						</div>
+						<div class="comment-content">
+							<p>Yo fui uno de esos que tuvo un accidente en la montaña rusa, la verdad es que no guardo buenos recuerdos del parque</p>
+						</div>
+			
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+	
+	
+		<h6> &copy; copyright 1989-1994</h6>
+		
+	</body>
+</html>

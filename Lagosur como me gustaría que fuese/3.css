@@ -1,0 +1,11 @@
+
+P {color:green;font-family: 'Press Start 2P', cursive;}
+h1 {color:purple;font-family: 'Press Start 2P', cursive;}
+h6{color:green;font-family: 'Press Start 2P', cursive;}
+body {background-color:black;}
+nav.horizontal ul li {
+				float: left;
+				width: 20%;
+			}	
+li {font-family: 'Press Start 2P', cursive;background-color:yellow;
+			li color:purple}

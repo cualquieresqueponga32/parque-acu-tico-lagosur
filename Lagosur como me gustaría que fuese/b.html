@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xml:lang="es" lang="es">
+
+	<head>
+		<title>xxxxxxxxxxxxx</title>
+		<meta http-equiv="Content-Type" 
+			  content="text/html; charset=utf-8"/>
+			  <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+			  <link rel="stylesheet" type="text/css" href="3.css" />
+			  	<script>
+		var imagenes = ["28.png","26.png","29.png","30.png","31.png","34.png","38.png","39.png","40.png","41.png","43.png","45.png",];
+		var titulos = ["Un pequeño montando en un caballo trotador ayudado por su padre.", "El martillo en movimiento.","Toboganes deslizantes.", "Barcas en el río bravo.", "Piscina familiar con las focas tobogán.","Un concierto en el lago.", "Entrada a la discoteca Universal Sur con piscina.", "Isla de Jauja rodeada por el lago artificial."," La isla donde se encontraba la discoteca vista desde Lagosur.", "El pulpo en acción.", "Fotograma del videoclip 'Deja que les diga que no' de Rosendo con él caminando delante de la montaña rusa.", "Un llavero promocional del parque."];
+		var imagenActual =0;
+		function pintarImagen() {
+			document.getElementById("miImagen").src = imagenes[imagenActual];
+			document.getElementById("miImagen").alt = titulos [imagenActual];
+			document.getElementById("miImagen").title = titulos[imagenActual];
+		document.getElementById("numero").value = imagenActual +1;
+		var infoImagen = "imagen : "+ (imagenActual +1) + "de" + imagenes.length;
+		document.getElementById("infoImagen").innerText = infoImagen;
+		var infoRuta = "ruta : " + imagenes[imagenActual];
+		document.getElementById("infoRuta").innerText = infoRuta;
+		var infoTitulo = "titulo: "+ titulos[imagenActual];
+		document.getElementById ("infoTitulo").innerText = infoTitulo;
+		
+		
+		}
+		function imagenSiguiente (){
+		imagenActual++;
+		if (imagenActual == imagenes.length){
+		imagenActual = 0; 
+		}
+		pintarImagen ();
+		}
+		function imagenAnterior () {
+		imagenActual--;
+		if (imagenActual==-1){
+		imagenActual = imagenes.length-1;
+		}
+		pintarImagen();
+		}
+		function primeraImagen(){
+		imagenActual = 0;
+		pintarImagen ();
+		}
+		function ultimaImagen (){
+		imagenActual = imagenes.length -1;
+		pintarImagen ();
+		}
+		function controlarTecla (){
+		var evento= window.event || elEvento;
+		var codigo = evento.which || evento.keyCode;
+		if (codigo < 48 || codigo >57) {
+		evento.preventDefault();
+		evento.stopPropagation();
+		return false;
+		}
+		}
+		function imagenNumero (){
+		var numeroResultante = document.getElementById("número").value -1;
+		if (numeroResultante >=0 && numeroResultante <= imagenes.length -1){
+		imagenActual = numeroResultante;
+		pintarImagen ();
+		}
+		else { document.getElementById("número").value = imagenActual +1;
+		}
+		}
+		
+		</script>
+				
+	</head>
+	<body>
+	<nav class="horizontal">
+
+			<ul>
+			    <li><a href="#"><a href="index.html"/>Menú.</a></li>
+				<li><a href="#"><a href="a.html"/>¿Sabías que...?.</a></li>
+				<li><a href="#"><a href="b.html"/>Imágenes.</a></li>
+				<li><a href="#"><a href="c.html"/>Enlaces.</a></li>
+				<li><a href="#"><a href="d.html"/>Comentarios.</a></li>
+				<li><a href="#"><a href="f.html"/>Sobre nosotros.</a></li>
+		
+			</ul>		
+		</nav>
+		
+	
+
+	<h1>>Galería de imágenes</h1>
+	<div>
+			<img src="28.png" id="miImagen" alt="Foto noventera" title="dad and me" />
+		</div>
+
+		<div>
+			<input type="button" title="Ir a la primera imagen" value="<<" onclick="primeraImagen();" />
+			<input type="button" value="<" onclick="imagenAnterior();" />
+
+			<input type="text" id="numero" size="4" onkeypress="controlarTecla();" onkeyup="imagenNumero();" value="1" />
+			<!-- <input type="button" value="Ir" onclick="imagenNumero();" /> -->
+
+			<input type="button" value=">" onclick="imagenSiguiente();" />
+			<input type="button" value=">>" onclick="ultimaImagen();" />
+		</div>
+		
+		<div>
+		<p>Información de la imagen</P>
+		<p id = "infoImagen">Imagen: 1 de 8</p>
+		<p id = "infoRuta">Ruta: 28.png</p>
+		<p id = "infoTitulo">Un pequeño montando en un caballo trotador ayudado por su padre.</p>
+		</div>
+		
+	
+	
+
+
+		<h6> &copy; copyright 1989-1994</h6>	
+	
+	
+	</body>
+</html>

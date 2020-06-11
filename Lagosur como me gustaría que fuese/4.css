@@ -1,0 +1,5 @@
+p {color: yellow}
+nav.horizontal ul li {
+				float: left;
+				width: 20%;
+			}	
